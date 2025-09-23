@@ -36,3 +36,4 @@ def search_books(request):
     query = request.GET.get('q', '')
     books = Book.objects.filter(title__icontains=query)
     return render(request, 'bookshelf/book_list.html', {'books': books})
+
