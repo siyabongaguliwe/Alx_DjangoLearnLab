@@ -21,3 +21,11 @@ def delete_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
     # logic to delete book
     return render(request, 'bookshelf/delete_book.html', {'book': book})
+from django.contrib.auth.decorators import permission_required
+from django.shortcuts import render
+from .models import Book
+
+@permission_required('bookshelf.can_view', raise_exception=True)
+def book_list(request):
+    books = Book.objects.all()
+    return render(request, 'bookshelf/book_list.html', {'books': books})
