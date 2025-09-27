@@ -40,3 +40,14 @@ class BookDeleteView(generics.DestroyAPIView):
 # BookCreateView: Allows authenticated users to create a Book.
 # BookUpdateView: Allows authenticated users to update a Book.
 # BookDeleteView: Allows authenticated users to delete a Book.
+class BookCreateView(generics.CreateAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = [permissions.IsAuthenticated]  # Only logged-in users can create
+
+from rest_framework import permissions
+
+class BookListView(generics.ListAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = [permissions.AllowAny]  # Anyone can view the list
