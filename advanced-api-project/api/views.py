@@ -5,6 +5,10 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 from .models import Book
 from .serializers import BookSerializer
 from django_filters import rest_framework
+from rest_framework.filters import OrderingFilter
+from rest_framework.filters import SearchFilter
+
+
 # 📚 List all books (Public access with filtering, searching, and ordering)
 class BookListView(generics.ListAPIView):
     queryset = Book.objects.all()
@@ -15,7 +19,10 @@ class BookListView(generics.ListAPIView):
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = ['title', 'author__name', 'publication_year']
     search_fields = ['title', 'author__name']
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     ordering_fields = ['title', 'publication_year']
+    search_fields = ['title', 'author__name']
+
 
 # 📖 Retrieve a single book by ID (Public access)
 class BookDetailView(generics.RetrieveAPIView):
