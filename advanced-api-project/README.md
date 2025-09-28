@@ -13,3 +13,9 @@
 ### Custom Behavior
 - Validation prevents future publication years.
 - Views use DRF generic classes for clean, efficient logic.
+
+## 🔍 Advanced Querying
+You can filter, search, and order books using query parameters:
+- Filter: /api/books/?title=Clean Code
+- Search: /api/books/?search=Martin
+- Order: /api/books/?ordering=-publication_year
